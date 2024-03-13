@@ -1,0 +1,19 @@
+public class PersonBirthYear {
+    public static void main(String[] args) {
+        int currentYear = 2073;
+        int eligibilityAge = 21;
+        int votingYear = currentYear - eligibilityAge;
+
+        int birthYear;
+
+        if (votingYear > 2060) {
+            birthYear = votingYear - eligibilityAge;
+            int yearsBetween = votingYear - 2023;
+            System.out.println("Years between voting-eligible year and 2023: " + yearsBetween);
+        } else {
+            birthYear = (votingYear + 2023) / 2;
+        }
+
+        System.out.println("Birth year: " + birthYear);
+    }
+}
