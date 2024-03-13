@@ -1,0 +1,23 @@
+public class LogicalGates {
+    public static boolean orGate(boolean input1, boolean input2) {
+        return input1 || input2;
+    }
+
+    public static boolean andGate(boolean input1, boolean input2) {
+        return input1 && input2;
+    }
+
+    public static void main(String[] args) {
+        boolean input1 = true;
+        boolean input2 = false;
+
+        boolean input3 = true;
+        boolean input4 = true;
+
+        boolean resultOr = orGate(input1, input2);
+        System.out.println("OR gate result for " + input1 + " OR " + input2 + " is: " + resultOr);
+
+        boolean resultAnd = andGate(input3, input4);
+        System.out.println("AND gate result for " + input3 + " AND " + input4 + " is: " + resultAnd);
+    }
+}
