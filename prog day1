@@ -1,0 +1,24 @@
+public class PrimitiveDataTypesDemo {
+    public static void main(String[] args) {
+        byte byteVariable = 10;
+        short shortVariable = 1000;
+        int intVariable = 100000;
+        long longVariable = 1000000000L; // Note the 'L' suffix for long literals
+        
+        float floatVariable = 3.14f; // Note the 'f' suffix for float literals
+        double doubleVariable = 3.14159265359;
+        
+        char charVariable = 'A';
+        
+        boolean booleanVariable = true;
+        
+        System.out.println("Byte variable: " + byteVariable);
+        System.out.println("Short variable: " + shortVariable);
+        System.out.println("Int variable: " + intVariable);
+        System.out.println("Long variable: " + longVariable);
+        System.out.println("Float variable: " + floatVariable);
+        System.out.println("Double variable: " + doubleVariable);
+        System.out.println("Char variable: " + charVariable);
+        System.out.println("Boolean variable: " + booleanVariable);
+    }
+}
