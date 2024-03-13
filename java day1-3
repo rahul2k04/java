@@ -1,0 +1,41 @@
+public class StringMethodsAndConstructorsDemo {
+    public static void main(String[] args) {
+        String str1 = "Hello, World!"; // Using string literal
+        char[] charArray = {'H', 'e', 'l', 'l', 'o'};
+        String str2 = new String(charArray); // Using char array
+        byte[] byteArray = {65, 66, 67, 68, 69}; // ASCII values for A, B, C, D, E
+        String str3 = new String(byteArray); // Using byte array and ASCII values
+        
+        System.out.println("String Constructors:");
+        System.out.println("str1: " + str1);
+        System.out.println("str2: " + str2);
+        System.out.println("str3: " + str3);
+        
+        String text = "This is a test string for demonstration";
+        
+        int length = text.length();
+        System.out.println("\nString Length: " + length);
+        
+        String concatStr = text.concat(". Added more text.");
+        System.out.println("\nConcatenated String: " + concatStr);
+        
+        String subStr = text.substring(10, 17); // Extract substring from index 10 to 17
+        System.out.println("\nSubstring: " + subStr);
+        
+        int indexOfTest = text.indexOf("test"); // Find index of the word "test"
+        System.out.println("\nIndex of 'test': " + indexOfTest);
+        
+        String replacedStr = text.replace("test", "sample"); // Replace "test" with "sample"
+        System.out.println("\nReplaced String: " + replacedStr);
+        
+        String upperCaseStr = text.toUpperCase();
+        String lowerCaseStr = text.toLowerCase();
+        System.out.println("\nUppercase String: " + upperCaseStr);
+        System.out.println("Lowercase String: " + lowerCaseStr);
+        
+        String paddedText = "   Trim this text   ";
+        String trimmedStr = paddedText.trim();
+        System.out.println("\nPadded Text: '" + paddedText + "'");
+        System.out.println("Trimmed Text: '" + trimmedStr + "'");
+    }
+}
