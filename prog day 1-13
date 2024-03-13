@@ -1,0 +1,25 @@
+public class GreatestValueInLoop {
+    public static void main(String[] args) {
+        int[] loop1 = {10, 15, 20};
+        int[] loop2 = {25, 30, 35};
+        int greatestValue;
+
+        int sumLoop1 = 0;
+        for (int num : loop1) {
+            sumLoop1 += num;
+        }
+
+        int sumLoop2 = 0;
+        for (int num : loop2) {
+            sumLoop2 += num;
+        }
+
+        if (sumLoop1 >= sumLoop2) {
+            greatestValue = sumLoop1;
+            System.out.println("The greatest value is in loop 1: " + greatestValue);
+        } else {
+            greatestValue = sumLoop2;
+            System.out.println("The greatest value is in loop 2: " + greatestValue);
+        }
+    }
+}
