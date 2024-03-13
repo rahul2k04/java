@@ -1,0 +1,35 @@
+public class ShortestPathFirst {
+    public static void main(String[] args) {
+        int loop1Iterations = 10;
+        int loop2Iterations = 20;
+        int loop3Iterations = 15;
+
+        String shortestPath;
+
+        switch (ShortestPathFirst.findShortestPath(loop1Iterations, loop2Iterations, loop3Iterations)) {
+            case 1:
+                shortestPath = "Loop 1";
+                break;
+            case 2:
+                shortestPath = "Loop 2";
+                break;
+            case 3:
+                shortestPath = "Loop 3";
+                break;
+            default:
+                shortestPath = "Unknown";
+        }
+
+        System.out.println("Shortest path first: " + shortestPath);
+    }
+
+    public static int findShortestPath(int loop1Iterations, int loop2Iterations, int loop3Iterations) {
+        if (loop1Iterations <= loop2Iterations && loop1Iterations <= loop3Iterations) {
+            return 1;
+        } else if (loop2Iterations <= loop1Iterations && loop2Iterations <= loop3Iterations) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+}
