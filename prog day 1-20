@@ -1,0 +1,26 @@
+public class ShiftValues {
+    public static void main(String[] args) {
+        int[] A = {4, 8, 12, 16}; // Example array A
+        int[] B = {2, 6, 10, 14}; // Example array B
+
+        boolean condition = A.length > B.length;
+
+        // If A > B, shift values from left to right
+        if (condition) {
+            for (int i = 0; i < A.length - 1; i++) {
+                A[i] = A[i + 1];
+            }
+            A[A.length - 1] = 0; 
+        } else {
+            for (int i = A.length - 1; i > 0; i--) {
+                A[i] = A[i - 1];
+            }
+            A[0] = 0; 
+        }
+
+        System.out.println("Shifted array:");
+        for (int num : A) {
+            System.out.print(num + " ");
+        }
+    }
+}
