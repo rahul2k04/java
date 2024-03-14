@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class InputExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a character, string, integer, float, and double separated by spaces: ");
+
+        char ch = scanner.next().charAt(0);  // Read the first character
+        String str = scanner.next();
+        int numInt = scanner.nextInt();
+        float numFloat = scanner.nextFloat();
+        double numDouble = scanner.nextDouble();
+
+        System.out.println("Character: " + ch);
+        System.out.println("String: " + str);
+        System.out.println("Integer: " + numInt);
+        System.out.println("Float: " + numFloat);
+        System.out.println("Double: " + numDouble);
+
+        scanner.close();
+    }
+}
