@@ -1,0 +1,34 @@
+class Parent {
+    int a;
+    int b;
+
+    Parent() {
+        a = 10;
+        b = 15;
+    }
+
+    Parent(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    void disp() {
+        System.out.println("a: " + a + ", b: " + b);
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        super(20, 25); 
+    }
+}
+
+public class ConstructorOverrideDemo {
+    public static void main(String[] args) {
+        Parent parentObj = new Parent(); 
+        parentObj.disp();
+
+        Child childObj = new Child();
+        childObj.disp(); 
+    }
+}
