@@ -1,0 +1,48 @@
+public class ThisKeywordDemo {
+    private int num;
+
+    public ThisKeywordDemo(int num) {
+        this.num = num;
+    }
+
+    public void display() {
+        System.out.println("Value of num: " + this.num);
+    }
+
+    private int value;
+
+    public ThisKeywordDemo() {
+        this(100);
+    }
+
+    public ThisKeywordDemo(int value) {
+        this.value = value;
+    }
+
+    public void showValue() {
+        System.out.println("Value: " + this.value);
+    }
+
+    public void displayObject(ThisKeywordDemo obj) {
+        System.out.println("Object value: " + obj.num);
+    }
+
+    public ThisKeywordDemo getObject() {
+        return this;
+    }
+
+    public static void main(String[] args) {
+        
+        ThisKeywordDemo obj1 = new ThisKeywordDemo(5);
+        obj1.display();
+
+        ThisKeywordDemo obj2 = new ThisKeywordDemo();
+        obj2.showValue();
+
+        ThisKeywordDemo obj3 = new ThisKeywordDemo(50);
+        obj1.displayObject(obj3); 
+
+        ThisKeywordDemo obj4 = obj1.getObject();
+        System.out.println("Object returned by getObject(): " + obj4);
+    }
+}
