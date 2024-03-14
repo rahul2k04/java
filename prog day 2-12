@@ -1,0 +1,39 @@
+class Parent {
+    String message = "Hello from Parent class";
+
+    Parent() {
+        System.out.println("Constructor of Parent class");
+    }
+
+    void display() {
+        System.out.println("Message from Parent class: " + message);
+    }
+}
+
+class Child extends Parent {
+    String message = "Hello from Child class";
+
+    Child() {
+        super();
+        System.out.println("Constructor of Child class");
+    }
+
+    void display() {
+        super.display();
+        System.out.println("Message from Child class: " + message);
+    }
+
+    void accessSuper() {
+        System.out.println("Message from superclass: " + super.message);
+    }
+}
+
+public class SuperKeywordDemo {
+    public static void main(String[] args) {
+        Child child = new Child();
+
+        child.accessSuper();
+
+        child.display();
+    }
+}
