@@ -1,0 +1,28 @@
+class Box<T> {
+    private T item;
+
+    public Box(T item) {
+        this.item = item;
+    }
+
+    public T getItem() {
+        return item;
+    }
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+}
+
+public class GenericClassDemo {
+    public static void main(String[] args) {
+        Box<Integer> intBox = new Box<>(10);
+        System.out.println("Item in Integer Box: " + intBox.getItem());
+
+        Box<String> strBox = new Box<>("Hello");
+        System.out.println("Item in String Box: " + strBox.getItem());
+
+        Box<Double> doubleBox = new Box<>(3.14);
+        System.out.println("Item in Double Box: " + doubleBox.getItem());
+    }
+}
