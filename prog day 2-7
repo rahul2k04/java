@@ -1,0 +1,45 @@
+interface SumInterface {
+    int sum(int[] numbers);
+}
+
+interface AvgInterface {
+    double avg(int[] numbers);
+}
+
+interface PercentageInterface {
+    double percentage(double obtainedMarks, double totalMarks);
+}
+
+class Calculator implements SumInterface, AvgInterface, PercentageInterface {
+    public int sum(int[] numbers) {
+        int sum = 0;
+        for (int num : numbers) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    public double avg(int[] numbers) {
+        int sum = sum(numbers);
+        return (double) sum / numbers.length;
+    }
+
+    public double percentage(double obtainedMarks, double totalMarks) {
+        return (obtainedMarks / totalMarks) * 100;
+    }
+}
+
+public class CalculatorDemo {
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        int[] numbers = {10, 20, 30, 40, 50};
+        System.out.println("Sum: " + calculator.sum(numbers));
+
+        System.out.println("Average: " + calculator.avg(numbers));
+
+        double obtainedMarks = 450;
+        double totalMarks = 500;
+        System.out.println("Percentage: " + calculator.percentage(obtainedMarks, totalMarks) + "%");
+    }
+}
