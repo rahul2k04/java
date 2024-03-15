@@ -1,0 +1,26 @@
+import java.util.Arrays;
+
+public class MaxMinSumDifference {
+    public static void main(String[] args) {
+        int[] array = {10, 20, 15, 30, 25, 40, 35};
+
+        int M = 2; // Mth maximum
+        int N = 2; // Nth minimum
+
+        Arrays.sort(array);
+
+        int mthMax = array[array.length - M];
+
+        int nthMin = array[N - 1];
+
+        int sum = mthMax + nthMin;
+
+        int difference = mthMax - nthMin;
+
+        System.out.println("Array: " + Arrays.toString(array));
+        System.out.println("Mth maximum number: " + mthMax);
+        System.out.println("Nth minimum number: " + nthMin);
+        System.out.println("Sum of Mth maximum and Nth minimum: " + sum);
+        System.out.println("Difference between Mth maximum and Nth minimum: " + difference);
+    }
+}
