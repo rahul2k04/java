@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class CustomExceptionDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter a decimal number: ");
+            String input = scanner.next();
+            validateDecimal(input);
+        } catch (InvalidDecimalException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Invalid input.");
+        } finally {
+            scanner.close();
+        }
+    }
+
+    public static void validateDecimal(String input) throws InvalidDecimalException {
+        try {
+            double number = Double.parseDouble(input);
+            if (Double.isNaN(number) || Double.isInfinite(number)) {
+                throw new InvalidDecimalException();
+            } else {
+                System.out.println("Entered number is valid: " + number);
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidDecimalException();
+        }
+    }
+}
