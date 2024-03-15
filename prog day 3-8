@@ -1,0 +1,20 @@
+class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+
+public class ThrowsExample {
+    public void methodWithThrows() throws CustomException {
+        throw new CustomException("Exception thrown from methodWithThrows.");
+    }
+
+    public void anotherMethodWithThrows() throws CustomException {
+        methodWithThrows();
+    }
+
+    public static void main(String[] args) throws CustomException {
+        ThrowsExample example = new ThrowsExample();
+        example.anotherMethodWithThrows();
+    }
+}
