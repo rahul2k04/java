@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class ATM {
+    private static int totalAmount = 10000; // Total amount available in the ATM machine
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Total amount available in the ATM machine: $" + totalAmount);
+
+        System.out.print("Do you want to perform a transaction? (yes/no): ");
+        String choice = scanner.next();
+
+        if (choice.equalsIgnoreCase("yes")) {
+            performTransaction();
+        } else {
+            System.out.println("Thank you for using the ATM machine.");
+        }
+
+        scanner.close();
+    }
+
+    private static void performTransaction() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the transaction amount: $");
+        int transactionAmount = scanner.nextInt();
+
+        if (transactionAmount <= 0) {
+            System.out.println("Invalid transaction amount. Please enter a positive amount.");
+            performTransaction();
+            return;
+        }
+
+        if (transactionAmount > totalAmount) {
+            System.out.println("Insufficient funds in the ATM machine.");
+            performTransaction(); 
+            return;
+        }
+
+        totalAmount -= transactionAmount;
+
+        System.out.println("Remaining amount available in the ATM machine: $" + totalAmount);
+
+        System.out.print("Do you want to perform another transaction? (yes/no): ");
+        String choice = scanner.next();
+
+        if (choice.equalsIgnoreCase("yes")) {
+            performTransaction();
+        } else {
+            System.out.println("Thank you for using the ATM machine.");
+        }
+
+        scanner.close();
+    }
+}
