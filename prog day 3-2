@@ -1,0 +1,37 @@
+public class ArrayIndexOutOfBoundsExceptionDemo {
+    public static void main(String[] args) {
+        try {
+            int[] arr1 = {1, 2, 3};
+            int element1 = arr1[3]; // This will throw ArrayIndexOutOfBoundsException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Out Of Bounds Exception: Accessing an array element outside its bound");
+        }
+
+        try {
+            int[] arr2 = {4, 5, 6};
+            for (int i = 0; i <= arr2.length; i++) {
+                System.out.println(arr2[i]);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Out Of Bounds Exception: Iterating beyond the array length");
+        }
+
+        try {
+            int[][] arr3 = {{1, 2}, {3, 4}};
+            int element3 = arr3[1][2];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Out Of Bounds Exception: Nested array and incorrect index");
+        }
+
+        try {
+            int[] arr4 = {7, 8, 9};
+            printArrayElement(arr4, 4);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Out Of Bounds Exception: Passing incorrect array to the method");
+        }
+    }
+
+    public static void printArrayElement(int[] arr, int index) {
+        System.out.println(arr[index]);
+    }
+}
