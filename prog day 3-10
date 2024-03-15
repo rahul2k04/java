@@ -1,0 +1,65 @@
+public class ThreadTimingExample {
+    public static void main(String[] args) {
+        Thread thread1 = new CustomThread("Thread 1");
+        Thread thread2 = new CustomThread("Thread 2");
+
+        long startTime = System.currentTimeMillis();
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        long endTime = System.currentTimeMillis();
+
+        long thread1WaitTime = ((CustomThread) thread1).getWaitTime();
+        long thread2WaitTime = ((CustomThread) thread2).getWaitTime();
+
+        System.out.println("Thread 1 wait time: " + thread1WaitTime + " ms");
+        System.out.println("Thread 2 wait time: " + thread2WaitTime + " ms");
+
+        if (thread1WaitTime > thread2WaitTime) {
+            System.out.println("Thread 1 has longer waiting time.");
+        } else if (thread2WaitTime > thread1WaitTime) {
+            System.out.println("Thread 2 has longer waiting time.");
+        } else {
+            System.out.println("Both threads have equal waiting time.");
+        }
+
+        long totalTime = endTime - startTime;
+        System.out.println("Total execution time: " + totalTime + " ms");
+    }
+}
+
+class CustomThread extends Thread {
+    private long waitTime = 0;
+
+    public CustomThread(String name) {
+        super(name);
+    }
+
+    public long getWaitTime() {
+        return waitTime;
+    }
+
+    public void run() {
+        long startTime = System.currentTimeMillis();
+        System.out.println(getName() + " started");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        long endTime = System.currentTimeMillis();
+        waitTime = endTime - startTime;
+
+        System.out.println(getName() + " ended");
+    }
+}
