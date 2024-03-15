@@ -1,0 +1,131 @@
+public class MatrixAddition {
+    public static void main(String[] args) {
+        int[][] matrix1 = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        int[][] matrix2 = {
+            {9, 8, 7},
+            {6, 5, 4},
+            {3, 2, 1}
+        };
+
+        MatrixThread t1 = new MatrixThread("Thread 1", matrix1);
+        MatrixThread t2 = new MatrixThread("Thread 2", matrix2);
+        CountThread t3 = new CountThread("Thread 3", t1, t2);
+        AdditionThread t4 = new AdditionThread("Thread 4", t1, t2, t3);
+
+        t3.start();
+        t4.start();
+    }
+}
+
+class MatrixThread extends Thread {
+    private int[][] matrix;
+
+    public MatrixThread(String name, int[][] matrix) {
+        super(name);
+        this.matrix = matrix;
+    }
+
+    public int[][] getMatrix() {
+        return matrix;
+    }
+
+
+        public void run() {
+        System.out.println(getName() + " started");
+        // Simulate some work
+        try {
+            Thread.sleep(2000); // Sleep for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(getName() + " ended");
+    }
+}
+
+class CountThread extends Thread {
+    private MatrixThread t1;
+    private MatrixThread t2;
+
+    public CountThread(String name, MatrixThread t1, MatrixThread t2) {
+        super(name);
+        this.t1 = t1;
+        this.t2 = t2;
+    }
+
+
+        public void run() {
+        System.out.println(getName() + " waiting for Thread 4 to complete count");
+        try {
+            Thread.sleep(500); // Sleep for 0.5 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        int count = t1.getMatrix().length * t1.getMatrix()[0].length +
+                    t2.getMatrix().length * t2.getMatrix()[0].length;
+        System.out.println(getName() + " completed count: " + count);
+
+        synchronized (t1) {
+            synchronized (t2) {
+                System.out.println(getName() + " acquired matrices from Thread 1 and Thread 2");
+                int[][] resultMatrix = addMatrices(t1.getMatrix(), t2.getMatrix());
+                System.out.println("Resultant Matrix:");
+                printMatrix(resultMatrix);
+            }
+        }
+    }
+
+    private int[][] addMatrices(int[][] matrix1, int[][] matrix2) {
+        int rows = matrix1.length;
+        int cols = matrix1[0].length;
+        int[][] result = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    private void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+class AdditionThread extends Thread {
+    private MatrixThread t1;
+    private MatrixThread t2;
+    private CountThread t3;
+
+    public AdditionThread(String name, MatrixThread t1, MatrixThread t2, CountThread t3) {
+        super(name);
+        this.t1 = t1;
+        this.t2 = t2;
+        this.t3 = t3;
+    }
+
+    public void run() {
+        System.out.println(getName() + " started");
+
+                try {
+            Thread.sleep(1000); // Sleep for 1 second
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(getName() + " completed");
+        synchronized (t3) {
+            t3.notify();
+        }
+    }
+}
