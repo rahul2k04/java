@@ -1,0 +1,77 @@
+public class ArmstrongThread extends Thread {
+    private int limit;
+
+    public ArmstrongThread(int limit) {
+        this.limit = limit;
+    }
+
+
+        public void run() {
+        System.out.println("ArmstrongThread started");
+        for (int i = 1; i <= limit; i++) {
+            if (isArmstrong(i)) {
+                System.out.println(i + " is an Armstrong number");
+            }
+        }
+        System.out.println("ArmstrongThread ended");
+    }
+
+    private boolean isArmstrong(int number) {
+        int originalNumber = number;
+        int sum = 0;
+        int digits = String.valueOf(number).length();
+
+        while (number > 0) {
+            int digit = number % 10;
+            sum += Math.pow(digit, digits);
+            number /= 10;
+        }
+
+        return sum == originalNumber;
+    }
+}
+
+public class FibonacciThread extends Thread {
+    private int limit;
+
+    public FibonacciThread(int limit) {
+        this.limit = limit;
+    }
+
+    public void run() {
+        System.out.println("FibonacciThread started");
+        int a = 0, b = 1;
+        System.out.println(a);
+        System.out.println(b);
+        for (int i = 2; i < limit; i++) {
+            int sum = a + b;
+            System.out.println(sum);
+            a = b;
+            b = sum;
+        }
+        System.out.println("FibonacciThread ended");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int limit = 100;
+
+        ArmstrongThread armstrongThread = new ArmstrongThread(limit);
+        FibonacciThread fibonacciThread = new FibonacciThread(limit);
+
+        System.out.println("Main thread started");
+
+        armstrongThread.start();
+        fibonacciThread.start();
+
+        try {
+            armstrongThread.join();
+            fibonacciThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main thread ended");
+    }
+}
