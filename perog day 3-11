@@ -1,0 +1,60 @@
+public class JoinOrSleepThreads {
+    public static void main(String[] args) {
+        Thread thread1 = new CustomThread("Thread 1", 10000);
+        Thread thread2 = new CustomThread("Thread 2", 5000);
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            if (containsEvenNumbers(thread1) || containsEvenNumbers(thread2)) {
+                thread1.join();
+                thread2.join();
+            } else {
+                Thread.sleep(15000); // Sleep for a longer time if no even numbers are found in either thread
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean containsEvenNumbers(Thread thread) {
+        if (thread instanceof CustomThread) {
+            return ((CustomThread) thread).containsEvenNumbers();
+        }
+        return false;
+    }
+}
+
+class CustomThread extends Thread {
+    private boolean containsEvenNumbers = false;
+    private long sleepTime;
+
+    public CustomThread(String name, long sleepTime) {
+        super(name);
+        this.sleepTime = sleepTime;
+    }
+
+    public boolean containsEvenNumbers() {
+        return containsEvenNumbers;
+    }
+
+    public void run() {
+        System.out.println(getName() + " started");
+
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                containsEvenNumbers = true;
+                break;
+            }
+        }
+
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(getName() + " ended");
+    }
+}
