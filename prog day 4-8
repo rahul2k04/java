@@ -1,0 +1,15 @@
+def find_nth_largest(arr, n):
+    arr.sort(reverse=True)
+    
+    if n <= len(arr):
+        return arr[n-1]
+    else:
+        return None  # Nth largest element doesn't exist in the array
+
+array = [3, 7, 1, 9, 4, 6, 2]
+n = 3
+nth_largest = find_nth_largest(array, n)
+if nth_largest is not None:
+    print(f"The {n}th largest number in the array is: {nth_largest}")
+else:
+    print(f"There is no {n}th largest number in the array.")
