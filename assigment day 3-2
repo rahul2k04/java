@@ -1,0 +1,14 @@
+public class NumberAndSquareArray {
+    public static void main(String[] args) {
+        int number = 5;
+        int[] array = createNumberAndSquareArray(number);
+        System.out.println("Array: [" + array[0] + ", " + array[1] + "]");
+    }
+
+    public static int[] createNumberAndSquareArray(int number) {
+        int[] array = new int[2];
+        array[0] = number;
+        array[1] = number * number;
+        return array;
+    }
+}
