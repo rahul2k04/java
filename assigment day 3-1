@@ -1,0 +1,76 @@
+import java.util.HashSet;
+
+public class UniquePermutations {
+    public static void main(String[] args) {
+        int number = 143;
+        System.out.println("Given Number: " + number);
+        System.out.println("Permutations are:");
+        generateUniquePermutations(number);
+    }
+
+    public static void generateUniquePermutations(int number) {
+        String str = Integer.toString(number);
+        char[] digits = str.toCharArray();
+        HashSet<String> set = new HashSet<>();
+        permute(digits, 0, set);
+        for (String perm : set) {
+            System.out.println(perm);
+        }
+    }
+
+    public static void permute(char[] digits, int start, HashSet<String> set) {
+        if (start == digits.length - 1) {
+            set.add(new String(digits));
+        } else {
+            for (int i = start; i < digits.length; i++) {
+                swap(digits, start, i);
+                permute(digits, start + 1, set);
+                swap(digits, start, i); // Backtrack
+            }
+        }
+    }
+
+    public static void swap(char[] arr, int i, int j) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
+import java.util.HashSet;
+
+public class UniquePermutations {
+    public static void main(String[] args) {
+        int number = 143;
+        System.out.println("Given Number: " + number);
+        System.out.println("Permutations are:");
+        generateUniquePermutations(number);
+    }
+
+    public static void generateUniquePermutations(int number) {
+        String str = Integer.toString(number);
+        char[] digits = str.toCharArray();
+        HashSet<String> set = new HashSet<>();
+        permute(digits, 0, set);
+        for (String perm : set) {
+            System.out.println(perm);
+        }
+    }
+
+    public static void permute(char[] digits, int start, HashSet<String> set) {
+        if (start == digits.length - 1) {
+            set.add(new String(digits));
+        } else {
+            for (int i = start; i < digits.length; i++) {
+                swap(digits, start, i);
+                permute(digits, start + 1, set);
+                swap(digits, start, i); // Backtrack
+            }
+        }
+    }
+
+    public static void swap(char[] arr, int i, int j) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
