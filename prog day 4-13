@@ -1,0 +1,32 @@
+class SuperClass {
+    int value;
+
+    SuperClass(int value) {
+        this.value = value;
+    }
+
+    void display() {
+        System.out.println("SuperClass Value: " + value);
+    }
+}
+
+class SubClass extends SuperClass {
+    int value;
+
+    SubClass(int superValue, int subValue) {
+        super(superValue);  // Calling parameterized constructor of the superclass
+        this.value = subValue;
+    }
+
+    void display() {
+        super.display();  // Calling display method of the superclass
+        System.out.println("SubClass Value: " + value);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SubClass obj = new SubClass(10, 20);
+        obj.display();
+    }
+}
