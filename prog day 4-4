@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class MultiplicationTable {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the number for multiplication table: ");
+        int m = scanner.nextInt();
+        
+        System.out.print("Enter the range (up to which number) for the table: ");
+        int n = scanner.nextInt();
+        
+        if (n < 1) {
+            System.out.println("Invalid range input. Please enter a number greater than or equal to 1.");
+            return;
+        }
+        
+        System.out.println("Multiplication table of " + m + " up to " + n + ":");
+        for (int i = 1; i <= n; i++) {
+            System.out.println(m + " x " + i + " = " + (m * i));
+        }
+        
+        scanner.close();
+    }
+}
