@@ -1,0 +1,45 @@
+public class MultiplicationTableThread extends Thread {
+    private int number;
+
+    public MultiplicationTableThread(int number) {
+        this.number = number;
+    }
+
+    public void run() {
+        System.out.println("Thread ID: " + Thread.currentThread().getId() + " is in the RUNNING state.");
+        System.out.println("Multiplication Table for " + number + ":");
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " x " + i + " = " + (number * i));
+            try {
+                Thread.sleep(500); // Introducing a delay for demonstration purposes
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        System.out.println("Thread ID: " + Thread.currentThread().getId() + " is in the TERMINATED state.");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Main Thread ID: " + Thread.currentThread().getId() + " is in the RUNNING state.");
+
+        MultiplicationTableThread table5Thread = new MultiplicationTableThread(5);
+        MultiplicationTableThread table10Thread = new MultiplicationTableThread(10);
+
+        table5Thread.start(); 
+        table10Thread.start();
+
+        System.out.println("Main Thread ID: " + Thread.currentThread().getId() + " is in the WAITING state for child threads.");
+
+        try {
+            table5Thread.join();
+            table10Thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main Thread ID: " + Thread.currentThread().getId() + " is in the TERMINATED state.");
+    }
+}
